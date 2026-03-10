@@ -1,0 +1,17 @@
+# EKG Core Shared Memory & Collaboration Rules
+
+## 1. Shared Memory
+*   All significant architecture, workflow rules, or role definitions must be documented in `README.md` or `.cursorrules`.
+*   Changes must be pushed to GitHub to ensure synchronization across devices.
+
+## 2. The Conservative Rule ("ไม่ดันทุรัง")
+*   If technical or architectural issues arise that complicate the current workflow significantly, STOP immediately.
+*   Do not try to force a complex workaround.
+*   Report the structural issue to the boss and wait for approval/direction before proceeding.
+
+## 3. Technical Auditor Log
+*   When EKG Core reports a console log (from F12), Antigravity must prioritize reading and diagnosing the provided log.
+*   Self-healing modifications must address the exact error reported.
+
+## 4. Tool Request Protocol
+*   If a missing library or tool is needed to complete a capability (e.g., chat integrations), Antigravity must stop and generate an approval request.
