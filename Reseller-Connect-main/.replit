@@ -1,0 +1,52 @@
+modules = ["python-3.11", "postgresql-16"]
+[agent]
+expertMode = true
+integrations = ["python_database:1.0.0", "google-sheet:1.0.0", "google-drive:1.0.0", "stripe:1.0.0"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Admin User Management"
+
+[[workflows.workflow]]
+name = "Admin User Management"
+author = "agent"
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "gunicorn --bind 0.0.0.0:5000 --worker-class gevent --workers 2 --worker-connections 1000 --timeout 60 --keep-alive 5 --reuse-port --reload app:app"
+waitForPort = 5000
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[nix]
+channel = "stable-25_05"
+packages = ["cargo", "freetype", "lcms2", "libiconv", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "rustc", "tcl", "tk", "zlib"]
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["gunicorn", "--bind=0.0.0.0:5000", "--workers=4", "--reuse-port", "app:app"]
+
+[objectStorage]
+defaultBucketID = "replit-objstore-8c6e8c60-841b-4882-8a69-88f2b490267a"
+
+[userenv]
+
+[userenv.shared]
+ADMIN_EMAIL = "cmidcoteam@gmail.com"
+VAPID_PUBLIC_KEY = "BEzwbayspvyMS6paBy_KXQAWgnl54ozegJGwZQiHZJ8wXAOQU3yG8TpUNcSdU2ClBAHD5wjnSaJ__TCcHpmDzVs"
+VAPID_PRIVATE_KEY = "R4iNEnx-oyVMCx-FNi0YowOa6GHe3VVJVxKRjIz9kds"
+VAPID_SUBJECT = "mailto:admin@ekgshops.com"
+SENDER_EMAIL = "cmidcoteam@gmail.com"

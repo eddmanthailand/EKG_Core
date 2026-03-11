@@ -1,0 +1,22 @@
+# Credentials
+.env*
+
+# Dependencies
+node_modules/
+pixel-agents-main/
+
+# Build artifacts
+.next/
+out/
+build/
+
+# Zips
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sensitive Assets
+**/attached_assets/*.json
+**/attached_assets/*.txt
